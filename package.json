@@ -2,6 +2,7 @@
   "name": "tacobot",
   "version": "1.0.0",
   "description": "Assistente de IA WhatsApp da TACO Assessoria de Comunicacao Corporativa",
+  "author": "Marcio Krefta",
   "main": "agenteq1.js",
   "scripts": {
     "start": "node agenteq1.js"
