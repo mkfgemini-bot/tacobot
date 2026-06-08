@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TACO Assessoria - Painel do Assistente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-2: #111111;
+      --surface: rgba(255,255,255,0.03);
+      --surface-2: rgba(255,255,255,0.05);
+      --border: rgba(255,255,255,0.08);
+      --border-glow: rgba(212,175,85,0.4);
+      --txt: #f0ece4;
+      --txt-dim: #8a8577;
+      --brand: #d4af55;
+      --brand-2: #b8941f;
+      --accent: #e8c96d;
+      --green: #4ade80;
+      --amber: #d4af55;
+      --red: #ef4444;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      color: var(--txt);
+      position: relative;
+      overflow-x: hidden;
+    }
+    .bg-grid {
+      position: fixed; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(212,175,85,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,175,85,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 70% 50% at 50% 0%, #000 30%, transparent 100%);
+    }
+    .glow {
+      position: fixed; z-index: 0; border-radius: 50%;
+      filter: blur(140px); opacity: 0.3; pointer-events: none;
+    }
+    .glow.a { top: -200px; left: -100px; width: 500px; height: 500px; background: #d4af55; }
+    .glow.b { top: 30%; right: -180px; width: 400px; height: 400px; background: #8b6914; }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 28px 20px 60px; position: relative; z-index: 1; }
+
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+      padding: 14px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      backdrop-filter: blur(12px);
+    }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-logo {
+      font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.3rem;
+      color: var(--brand); letter-spacing: 2px;
+    }
+    .brand-sub { font-size: .7rem; color: var(--txt-dim); letter-spacing: 1.5px; text-transform: uppercase; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .78rem; color: var(--txt-dim);
+      padding: 8px 14px; border-radius: 999px;
+      border: 1px solid var(--border); background: rgba(0,0,0,0.4);
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 10px currentColor; }
+    .dot.on { background: var(--green); }
+
+    .hero { text-align: center; padding: 48px 10px 30px; }
+    .hero .tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .72rem; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--brand); padding: 7px 18px; border-radius: 999px;
+      border: 1px solid var(--border-glow); background: rgba(212,175,85,0.06);
+      margin-bottom: 22px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-weight: 700;
+      font-size: clamp(1.8rem, 4.5vw, 2.8rem); line-height: 1.1; letter-spacing: -0.5px;
+    }
+    .hero h1 span { color: var(--brand); }
+    .hero p { color: var(--txt-dim); max-width: 560px; margin: 18px auto 0; font-size: .95rem; line-height: 1.6; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      margin: 18px 0;
+      backdrop-filter: blur(14px);
+      transition: border-color .3s;
+    }
+    .card:hover { border-color: var(--border-glow); }
+    .card h2 {
+      font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700;
+      margin-bottom: 6px; display: flex; align-items: center; gap: 10px;
+    }
+    .card .card-desc { color: var(--txt-dim); font-size: .88rem; margin-bottom: 20px; }
+
+    #qr-area {
+      text-align: center; padding: 26px; min-height: 220px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.3); border: 1px dashed var(--border); border-radius: 14px;
+    }
+    #qr-area img { max-width: 260px; border-radius: 14px; padding: 12px; background: #fff; box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+    #qr-area .msg { margin-top: 16px; font-size: .92rem; color: var(--txt-dim); }
+    .status-ok { color: var(--green) !important; font-weight: 600; }
+    .status-pendente { color: var(--amber) !important; }
+    .qr-loading { animation: pulse 1.6s ease-in-out infinite; }
+    @keyframes pulse { 50% { opacity: .45; } }
+
+    .btn {
+      padding: 12px 22px; border: none; border-radius: 11px;
+      font-size: .9rem; font-weight: 600; cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: transform .15s, box-shadow .25s, opacity .2s;
+      display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+    .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+    .btn-primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #0a0a0a; box-shadow: 0 10px 30px rgba(212,175,85,.35); font-weight: 700; }
+    .btn-success { background: linear-gradient(135deg, #16a34a, #22c55e); color: #fff; box-shadow: 0 10px 30px rgba(34,197,94,.3); }
+    .btn-ghost { background: var(--surface-2); color: var(--txt); border: 1px solid var(--border); }
+    .btn-amber { background: linear-gradient(135deg, #92700c, #d4af55); color: #0a0a0a; font-weight: 700; }
+    .btn-red { background: linear-gradient(135deg, #b91c1c, #ef4444); color: #fff; }
+    .btn-small { padding: 9px 15px; font-size: .82rem; }
+
+    .tab-buttons { display: flex; gap: 8px; margin: 26px 0 18px; flex-wrap: wrap; }
+    .tab-btn {
+      padding: 11px 20px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 11px; color: var(--txt-dim); cursor: pointer; font-size: .88rem; font-weight: 600;
+      font-family: 'Inter', sans-serif; transition: all .2s;
+    }
+    .tab-btn.active { background: linear-gradient(135deg, var(--brand), var(--brand-2)); border-color: transparent; color: #0a0a0a; box-shadow: 0 8px 24px rgba(212,175,85,.35); }
+    .tab-btn:hover:not(.active) { color: var(--txt); border-color: var(--border-glow); }
+    .tab-content { display: none; animation: fade .35s ease; }
+    .tab-content.ativo { display: block; }
+    @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; margin-bottom: 8px; font-size: .84rem; font-weight: 500; color: var(--txt); }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 13px 16px; border: 1px solid var(--border); border-radius: 11px;
+      background: rgba(0,0,0,0.4); color: #fff; font-size: .92rem; font-family: 'Inter', sans-serif;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(212,175,85,.15);
+    }
+    .form-group textarea { min-height: 150px; resize: vertical; line-height: 1.6; }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: #555; }
+
+    .checkbox-group { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; padding: 14px; background: rgba(0,0,0,.3); border: 1px solid var(--border); border-radius: 11px; }
+    .checkbox-group input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--brand); cursor: pointer; }
+    .checkbox-group label { font-size: .88rem; color: var(--txt-dim); cursor: pointer; }
+
+    .dica {
+      background: rgba(212,175,85,.08); border-left: 3px solid var(--brand);
+      padding: 14px 18px; border-radius: 0 11px 11px 0; margin: 0 0 20px; font-size: .88rem; line-height: 1.55; color: var(--txt-dim);
+    }
+    .dica b { color: var(--txt); }
+
+    .flow-item { background: rgba(0,0,0,.3); border-radius: 13px; padding: 18px; margin-bottom: 14px; border: 1px solid var(--border); }
+    .flow-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .flow-header span { font-family: 'Playfair Display', serif; font-weight: 600; font-size: .88rem; color: var(--brand); }
+
+    .footer { margin-top: 30px; text-align: center; color: var(--txt-dim); font-size: .8rem; }
+    .footer a { color: var(--brand); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    .footer .contact-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 10px; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 30px 6px 18px; }
+      .card { padding: 18px; }
+      .topbar { border-radius: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="glow a"></div>
+  <div class="glow b"></div>
+
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-logo">TACO</div>
+        <div>
+          <div class="brand-sub">Assessoria de Comunicação Corporativa</div>
+        </div>
+      </div>
+      <div class="pill"><span class="dot" id="statusDot"></span><span id="statusPill">Conectando...</span></div>
+    </div>
+
+    <div class="hero">
+      <div class="tag">Painel de Atendimento Inteligente</div>
+      <h1>Assistente da <span>TACO</span></h1>
+      <p>Conecte o WhatsApp, ative a inteligência artificial e gerencie os fluxos de atendimento. Comunicação que constrói autoridade.</p>
+    </div>
+
+    <div class="card">
+      <h2>Conectar WhatsApp</h2>
+      <p class="card-desc">Escaneie o QR Code com o app do WhatsApp em Aparelhos conectados.</p>
+      <div id="qr-area">
+        <div class="msg status-pendente">Aguarde... o QR Code aparecerá aqui em instantes.</div>
+      </div>
+      <div id="qr-buttons" style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px;">
+        <button class="btn btn-primary" id="btnGerarQR">Gerar novo QR Code</button>
+        <button class="btn btn-amber btn-small" id="btnLimparSessao">Limpar sessão e tentar</button>
+        <button class="btn btn-red btn-small" id="btnDesconectar" style="display:none;">Desconectar</button>
+      </div>
+    </div>
+
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="groq">Chave Groq (IA)</button>
+      <button class="tab-btn" data-tab="fluxos">Fluxos do Bot</button>
+      <button class="tab-btn" data-tab="modelo">Modelo e Personalidade</button>
+    </div>
+
+    <div id="tab-groq" class="tab-content ativo">
+      <div class="card">
+        <h2>Inteligência Artificial (Groq)</h2>
+        <p class="dica">Os fluxos já respondem as principais interações. <b>Adicione sua chave Groq</b> para a IA responder qualquer pergunta fora dos fluxos com a linguagem da TACO.</p>
+        <div style="margin-bottom:16px;">
+          <a href="https://console.groq.com/keys" target="_blank" class="btn btn-success btn-small">Obter chave grátis no Groq</a>
+        </div>
+        <p style="font-size:.82rem; color:var(--txt-dim); margin-bottom:16px;">Crie a conta gratuita, vá em API Keys, Create API Key, copie e cole abaixo.</p>
+        <div class="form-group">
+          <label>Sua chave Groq (gsk_...)</label>
+          <input type="password" id="groqKey" placeholder="Cole aqui a chave copiada do Groq">
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="useAI" checked>
+          <label for="useAI">Usar IA para responder perguntas fora dos fluxos</label>
+        </div>
+        <button class="btn btn-primary" id="salvarGroq">Salvar configuração</button>
+      </div>
+    </div>
+
+    <div id="tab-fluxos" class="tab-content">
+      <div class="card">
+        <h2>Fluxos do Bot</h2>
+        <p class="dica">Quando a pessoa digitar uma das <b>palavras-chave</b>, o bot responde com a mensagem definida. Separe as palavras por vírgula.</p>
+        <div id="lista-fluxos"></div>
+        <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap;">
+          <button class="btn btn-ghost" id="novoFluxo">+ Adicionar fluxo</button>
+          <button class="btn btn-primary" id="salvarFluxos">Salvar fluxos</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-modelo" class="tab-content">
+      <div class="card">
+        <h2>Personalidade da IA</h2>
+        <p class="dica">Este texto define como a IA da <b>TACO</b> se comporta. Já vem pronto com o tom institucional da marca.</p>
+        <div class="form-group">
+          <label>Instruções para a IA (prompt do sistema)</label>
+          <textarea id="promptSistema" placeholder="Você é o assistente virtual da TACO Assessoria..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Modelo de IA (Groq)</label>
+          <select id="modeloGroq">
+            <option value="llama-3.1-8b-instant">Llama 3.1 8B (rápido)</option>
+            <option value="llama-3.3-70b-versatile">Llama 3.3 70B (mais inteligente)</option>
+            <option value="mixtral-8x7b-32768">Mixtral 8x7B</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" id="salvarModelo">Salvar</button>
+      </div>
+    </div>
+
+    <div class="card footer">
+      <p>Projeto desenvolvido para a <b style="color:var(--brand)">TACO Assessoria</b> por Márcio</p>
+      <div class="contact-row">
+        <a href="https://wa.me/5548988508234" target="_blank" class="btn btn-primary btn-small">WhatsApp TACO</a>
+        <a href="mailto:contato@tacoassessoria.com.br" class="btn btn-ghost btn-small">contato@tacoassessoria.com.br</a>
+        <a href="https://www.instagram.com/tacoassessoria/" target="_blank" class="btn btn-ghost btn-small">Instagram</a>
+        <a href="https://www.tacoassessoria.com.br" target="_blank" class="btn btn-ghost btn-small">tacoassessoria.com.br</a>
+      </div>
+      <p style="margin-top:12px; opacity:.5;">2026 TACO Assessoria. Comunicação que constrói autoridade.</p>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const $ = id => document.getElementById(id);
+    function setStatusPill(conectado, texto) {
+      const dot = $('statusDot'), pill = $('statusPill');
+      if (conectado) { dot.classList.add('on'); pill.textContent = 'WhatsApp conectado'; }
+      else { dot.classList.remove('on'); pill.textContent = texto || 'Aguardando conexão'; }
+    }
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('ativo'));
+        btn.classList.add('active');
+        $(`tab-${btn.dataset.tab}`).classList.add('ativo');
+      });
+    });
+    socket.on('qr', (qrDataUrl) => {
+      const area = $('qr-area');
+      const btnDesconectar = $('btnDesconectar');
+      if (qrDataUrl === 'loading') {
+        area.innerHTML = '<div class="msg status-pendente qr-loading">Gerando QR Code... aguarde.</div>';
+        btnDesconectar.style.display = 'none';
+        if ($('btnLimparSessao')) $('btnLimparSessao').style.display = 'inline-flex';
+        setStatusPill(false, 'Gerando QR Code...');
+      } else if (qrDataUrl) {
+        area.innerHTML = '<img src="'+qrDataUrl+'" alt="QR Code"><div class="msg status-pendente">Escaneie com o WhatsApp (Aparelhos conectados)</div>';
+        btnDesconectar.style.display = 'none';
+        setStatusPill(false, 'Escaneie o QR Code');
+      } else {
+        area.innerHTML = '<div class="msg status-ok">WhatsApp conectado com sucesso.</div>';
+        btnDesconectar.style.display = 'inline-flex';
+        if ($('btnLimparSessao')) $('btnLimparSessao').style.display = 'none';
+        setStatusPill(true);
+      }
+    });
+    socket.on('status', (s) => {
+      const area = $('qr-area');
+      const btnDesconectar = $('btnDesconectar');
+      if (s.conectado) {
+        area.innerHTML = '<div class="msg status-ok">'+s.mensagem+'</div>';
+        btnDesconectar.style.display = 'inline-flex';
+        setStatusPill(true);
+      } else {
+        if (!area.querySelector('img')) area.innerHTML = '<div class="msg status-pendente">'+s.mensagem+'</div>';
+        btnDesconectar.style.display = 'none';
+        setStatusPill(false, s.mensagem);
+      }
+      $('btnLimparSessao').style.display = s.conectado ? 'none' : 'inline-flex';
+    });
+    $('btnGerarQR').addEventListener('click', async () => {
+      $('btnGerarQR').disabled = true; $('btnGerarQR').textContent = 'Gerando...';
+      try { await fetch('/api/whatsapp/restart', { method: 'POST' }); } catch (e) {}
+      setTimeout(() => { $('btnGerarQR').disabled = false; $('btnGerarQR').textContent = 'Gerar novo QR Code'; }, 3000);
+    });
+    $('btnLimparSessao').addEventListener('click', async () => {
+      if (!confirm('Limpar sessão do WhatsApp? Precisará escanear o QR novamente.')) return;
+      $('btnLimparSessao').disabled = true; $('btnLimparSessao').textContent = 'Limpando...';
+      try { await fetch('/api/whatsapp/restart?limpar=1', { method: 'POST' }); } catch (e) {}
+      setTimeout(() => { $('btnLimparSessao').disabled = false; $('btnLimparSessao').textContent = 'Limpar sessão e tentar'; }, 3000);
+    });
+    $('btnDesconectar').addEventListener('click', async () => {
+      if (!confirm('Desconectar o WhatsApp?')) return;
+      $('btnDesconectar').disabled = true;
+      try { await fetch('/api/whatsapp/disconnect', { method: 'POST' }); } catch (e) {}
+      $('btnDesconectar').disabled = false; $('btnDesconectar').style.display = 'none';
+    });
+    async function carregarConfig() {
+      const r = await fetch('/api/config/full');
+      const cfg = await r.json();
+      $('groqKey').value = cfg.groqApiKey || '';
+      $('useAI').checked = cfg.useAI !== false;
+      $('promptSistema').value = cfg.promptSistema || '';
+      $('modeloGroq').value = cfg.model || 'llama-3.1-8b-instant';
+      renderFluxos(cfg.flows || []);
+    }
+    function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+    function renderFluxos(flows) {
+      const div = $('lista-fluxos');
+      div.innerHTML = flows.map((f, i) => {
+        return '<div class="flow-item" data-idx="'+i+'"><div class="flow-header"><span>Fluxo '+(i+1)+'</span><button class="btn btn-red btn-small" onclick="removerFluxo('+i+')">Remover</button></div><div style="margin-bottom:10px;"><input type="text" class="flow-palavras-input" placeholder="oi, olá, bom dia" value="'+escapeHtml((f.palavras||[]).join(', '))+'"></div><div class="form-group" style="margin-bottom:0;"><textarea class="flow-resposta-input" placeholder="Resposta do bot">'+escapeHtml(f.resposta||'')+'</textarea></div></div>';
+      }).join('');
+    }
+    function coletarFluxos() {
+      return Array.from(document.querySelectorAll('.flow-item')).map((el, i) => {
+        const palavras = (el.querySelector('.flow-palavras-input')?.value||'').split(',').map(p=>p.trim()).filter(Boolean);
+        const resposta = el.querySelector('.flow-resposta-input')?.value || '';
+        return { id: String(i+1), palavras, resposta };
+      });
+    }
+    window.removerFluxo = function(i) { const f = coletarFluxos(); f.splice(i,1); renderFluxos(f); };
+    $('novoFluxo').addEventListener('click', () => { const f = coletarFluxos(); f.push({id:String(f.length+1),palavras:[],resposta:''}); renderFluxos(f); });
+    async function salvarTudo() {
+      const flows = coletarFluxos();
+      await fetch('/api/config', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ groqApiKey:$('groqKey').value.trim(), useAI:$('useAI').checked, model:$('modeloGroq').value, promptSistema:$('promptSistema').value.trim(), flows }) });
+      alert('Configuração salva com sucesso.');
+    }
+    $('salvarGroq').addEventListener('click', salvarTudo);
+    $('salvarModelo').addEventListener('click', salvarTudo);
+    $('salvarFluxos').addEventListener('click', async () => {
+      await fetch('/api/config', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ flows: coletarFluxos() }) });
+      alert('Fluxos salvos.');
+    });
+    let debounceFluxo;
+    document.addEventListener('input', (e) => {
+      if (e.target.closest('.flow-item')) { clearTimeout(debounceFluxo); debounceFluxo = setTimeout(() => { fetch('/api/config', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ flows: coletarFluxos() }) }); }, 1500); }
+    });
+    carregarConfig();
+  </script>
+</body>
+</html>

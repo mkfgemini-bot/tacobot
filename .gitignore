@@ -1,0 +1,8 @@
+node_modules/
+.wwebjs_auth/
+.wwebjs_cache/
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+silencio_chats.json

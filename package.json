@@ -1,0 +1,19 @@
+{
+  "name": "tacobot",
+  "version": "1.0.0",
+  "description": "Assistente de IA WhatsApp da TACO Assessoria de Comunicacao Corporativa",
+  "main": "agenteq1.js",
+  "scripts": {
+    "start": "node agenteq1.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "openai": "^4.52.0",
+    "qrcode": "^1.5.3",
+    "socket.io": "^4.7.2",
+    "whatsapp-web.js": "^1.24.0"
+  }
+}

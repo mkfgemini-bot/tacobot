@@ -1,0 +1,124 @@
+{
+  "groqApiKey": "",
+  "useAI": true,
+  "model": "llama-3.1-8b-instant",
+  "responderComAudio": false,
+  "promptSistema": "Você é o assistente virtual da TACO Assessoria, consultoria premium em comunicação corporativa com sede em Florianópolis e atuação no Brasil e na Europa. A TACO é comandada pela jornalista Lu Toledo e atende marcas que pensam em décadas, não em trimestres. Serviços: assessoria de imprensa com mídia espontânea qualificada em veículos de prestígio, gestão de crise com protocolos de resposta rápida para blindar imagem corporativa, posicionamento institucional com definição de discurso de marca e narrativa de liderança, marketing digital institucional com estratégia e conteúdo denso, conteúdo institucional de alto nível incluindo artigos, releases, ghostwriting e thought leadership. Resultados: mais de 15 marcas atendidas, mais de 1000 inserções em mídia em 2025, 15 frentes integradas de comunicação, atuação no Brasil e na Europa. Clientes incluem UNISOCIESC, UNICESUSC, Macromaq, Shopping Itaguaçu, Karsten, Festival de Cinema de Jaraguá do Sul, Espetáculo Green, Fanfarra da Ponte, Bugio Casa de Cultura e El Sonidero Insurgente Tour. Tom de voz: institucional, sofisticado, confiante, direto. Comunicação de quem constrói reputação para marcas sérias. Sem informalidade excessiva, sem emojis exagerados. Objetivo: qualificar o contato, entender o desafio de comunicação da marca e conduzir para o agendamento de um diagnóstico de reputação gratuito via WhatsApp +55 48 98850-8234 ou e-mail contato@tacoassessoria.com.br. Regras: seja conciso e profissional. Não invente valores, o investimento é definido após o diagnóstico conforme o escopo do projeto. Se pedirem um humano, diga que a equipe da TACO assume a conversa em instantes. Nunca use asteriscos, travessões duplos, markdown ou formatação de IA nas respostas. Escreva de forma limpa, profissional e elegante.",
+  "flows": [
+    {
+      "id": "1",
+      "palavras": ["oi", "olá", "ola", "bom dia", "boa tarde", "boa noite", "menu", "início", "inicio", "começar", "comecar", "hey", "e aí", "eai", "hello", "hi"],
+      "resposta": "Olá, tudo bem? Aqui é o assistente da TACO Assessoria, consultoria premium em comunicação corporativa. Posicionamento institucional, mídia espontânea e gestão de crise para marcas que pensam em décadas. Como posso ajudar? 1 Nossos serviços. 2 Agendar diagnóstico de reputação gratuito. 3 Falar com a equipe. 4 Sobre a TACO. 5 Clientes e resultados. 6 Contato direto. Digite o número ou envie sua dúvida."
+    },
+    {
+      "id": "2",
+      "palavras": ["1", "serviços", "servicos", "o que fazem", "o que vocês fazem", "assessoria", "comunicação", "comunicacao"],
+      "resposta": "Nossos serviços de comunicação corporativa. Assessoria de Imprensa: inserimos sua marca nas principais mesas de decisão. Pautas exclusivas que geram mídia espontânea qualificada em veículos de prestígio, validando sua autoridade perante o mercado. Gestão de Crise: mitigação de riscos reputacionais e protocolos de resposta rápida para blindar sua imagem corporativa em momentos críticos. Posicionamento Institucional: alinhamento preciso entre sua estratégia de negócios e a percepção pública. Definição de discurso de marca, narrativa de liderança e mensagens-chave. Marketing Digital Institucional: sua vitrine digital refletindo a maturidade da sua operação. Gestão de canais com estratégia, conteúdo denso e estética irretocável. Conteúdo Institucional: artigos, releases, ghostwriting e thought leadership para lideranças que querem ocupar lugar de referência. Quer um diagnóstico de reputação gratuito da sua marca? Digite 2."
+    },
+    {
+      "id": "3",
+      "palavras": ["2", "diagnóstico", "diagnostico", "agendar", "orçamento", "orcamento", "preço", "preco", "valor", "quanto custa", "investimento", "proposta"],
+      "resposta": "O diagnóstico de reputação é gratuito. Entregamos um PDF executivo com análise de presença em mídia, oportunidades editoriais e riscos de reputação. Como funciona: analisamos sua marca nos principais veículos e canais, mapeamos oportunidades de posicionamento e identificamos vulnerabilidades reputacionais. O investimento de cada projeto é definido após essa análise, conforme o escopo e a complexidade da operação de comunicação. Agende agora: https://wa.me/5548988508234. Ou e-mail: contato@tacoassessoria.com.br. Qual é o segmento da sua empresa e o principal desafio de comunicação hoje?"
+    },
+    {
+      "id": "4",
+      "palavras": ["3", "atendente", "humano", "especialista", "falar com alguém", "falar com alguem", "pessoa real", "lu", "lu toledo"],
+      "resposta": "Combinado. A equipe da TACO Assessoria vai assumir esta conversa em breve. Para agilizar: https://wa.me/5548988508234. Se preferir, adiante o contexto da sua marca e o desafio de comunicação que já encaminhamos com briefing."
+    },
+    {
+      "id": "5",
+      "palavras": ["4", "sobre", "quem são", "quem é", "taco", "empresa", "about"],
+      "resposta": "A TACO Assessoria é uma consultoria premium em comunicação corporativa, com sede em Florianópolis e atuação no Brasil e na Europa. Comandada pela jornalista Lu Toledo, atendemos marcas que exigem posicionamento institucional sólido, mídia espontânea qualificada e proteção reputacional de alto nível. Não vendemos posts. Construímos autoridade. Mais de 15 marcas atendidas, mais de 1000 inserções em mídia em 2025, 15 frentes integradas de comunicação. Clientes como UNISOCIESC, UNICESUSC, Macromaq, Shopping Itaguaçu, Karsten, festivais de cinema e cultura. Quer saber como podemos posicionar sua marca? Digite 2 para o diagnóstico gratuito."
+    },
+    {
+      "id": "6",
+      "palavras": ["5", "clientes", "cases", "resultados", "portfolio", "portfólio", "resultado"],
+      "resposta": "Resultados da TACO em números. Mais de 15 marcas atendidas simultaneamente. Mais de 1000 inserções em mídia em 2025. 15 frentes integradas de comunicação. Atuação no Brasil e na Europa, sede em Florianópolis. Clientes: UNISOCIESC, UNICESUSC, Macromaq, Shopping Itaguaçu, Karsten, Festival de Cinema de Jaraguá do Sul, Espetáculo Green, Fanfarra da Ponte, Bugio Casa de Cultura, El Sonidero Insurgente Tour. Reputação que se traduz em métricas. Quer ver como aplicamos na sua marca? Agende o diagnóstico: digite 2."
+    },
+    {
+      "id": "7",
+      "palavras": ["6", "contato", "telefone", "whatsapp", "email", "e-mail", "instagram", "linkedin", "redes", "site", "endereço"],
+      "resposta": "Fale com a TACO Assessoria. WhatsApp: https://wa.me/5548988508234. E-mail: contato@tacoassessoria.com.br. Instagram: https://instagram.com/tacoassessoria. LinkedIn: https://linkedin.com/in/taco-assessoria-de-comunicação-0a013a347. Site: https://www.tacoassessoria.com.br. Florianópolis, SC. Atendimento corporativo, focado e sem burocracia."
+    },
+    {
+      "id": "8",
+      "palavras": ["imprensa", "mídia", "midia", "jornalista", "release", "pauta", "veículo", "veiculo", "matéria", "materia", "publicação", "publicacao", "jornal", "tv", "rádio", "radio"],
+      "resposta": "Assessoria de imprensa é o nosso core. Inserimos sua marca nas principais mesas de decisão editorial. Construímos pautas exclusivas que geram mídia espontânea qualificada em veículos de prestígio, validando sua autoridade perante o mercado. Mais de 1000 inserções em mídia em 2025. Não compramos espaço. Conquistamos relevância editorial. Quer entender como posicionamos sua marca na mídia? Diagnóstico gratuito: https://wa.me/5548988508234"
+    },
+    {
+      "id": "9",
+      "palavras": ["crise", "reputação", "reputacao", "risco", "escândalo", "escandalo", "problema de imagem", "imagem", "blindar", "proteger"],
+      "resposta": "Gestão de crise é uma das nossas especialidades. Atuamos com mitigação de riscos reputacionais e protocolos de resposta rápida para blindar a imagem corporativa em momentos críticos. Prevenção, monitoramento e ação coordenada. Sua marca protegida antes, durante e depois de qualquer turbulência. Precisa de suporte imediato ou quer um diagnóstico preventivo? https://wa.me/5548988508234"
+    },
+    {
+      "id": "10",
+      "palavras": ["posicionamento", "marca", "branding", "narrativa", "discurso", "institucional", "liderança", "lideranca"],
+      "resposta": "Posicionamento institucional é construir o alinhamento preciso entre sua estratégia de negócios e a percepção pública. Definimos discurso de marca, narrativa de liderança e mensagens-chave que fazem sua empresa ser percebida como referência no segmento. Não é sobre ser visto. É sobre ser respeitado. Quer alinhar o posicionamento da sua marca? Digite 2 para o diagnóstico gratuito."
+    },
+    {
+      "id": "11",
+      "palavras": ["conteúdo", "conteudo", "artigo", "ghostwriting", "thought leadership", "texto", "redação", "redacao", "blog"],
+      "resposta": "Produzimos conteúdo institucional de alto nível. Artigos, releases, ghostwriting e thought leadership para lideranças e marcas que querem ocupar lugar de referência. Cada texto é uma peça estratégica de posicionamento, não preenchimento de pauta. Precisa de conteúdo executivo para sua marca ou liderança? https://wa.me/5548988508234"
+    },
+    {
+      "id": "12",
+      "palavras": ["digital", "redes sociais", "instagram", "linkedin", "marketing digital", "social media"],
+      "resposta": "Marketing digital institucional na TACO não é sobre quantidade de posts. Sua vitrine digital precisa refletir a maturidade da sua operação. Elevamos a gestão dos seus canais com estratégia, conteúdo denso e estética irretocável. Resultado: autoridade digital que sustenta o posicionamento offline. Quer uma análise dos seus canais? Diagnóstico gratuito: https://wa.me/5548988508234"
+    },
+    {
+      "id": "13",
+      "palavras": ["interessante", "interessado", "quero saber", "me conta", "conta mais", "fala mais", "explica", "gostei", "curti", "show", "top", "legal"],
+      "resposta": "Que bom que chamou sua atenção. A TACO Assessoria trabalha com comunicação corporativa de alto nível para marcas que levam reputação a sério. O primeiro passo é um diagnóstico de reputação gratuito onde analisamos sua presença em mídia, oportunidades editoriais e riscos. PDF executivo entregue em até 24h. Quer agendar? https://wa.me/5548988508234. Ou me conte sobre sua marca que eu direciono."
+    },
+    {
+      "id": "14",
+      "palavras": ["caro", "barato", "desconto", "promoção", "promocao", "valor", "pagamento", "parcela", "condições", "condicoes"],
+      "resposta": "O investimento é definido conforme o escopo e a complexidade da operação de comunicação. Cada projeto é sob medida. O que garantimos: retorno em reputação, autoridade e posicionamento que se traduz em valor real para o negócio. O diagnóstico gratuito é o primeiro passo para entender o cenário e definir a proposta. Agende: https://wa.me/5548988508234"
+    },
+    {
+      "id": "15",
+      "palavras": ["outra agência", "outra agencia", "concorrente", "diferente", "diferencial", "por que vocês", "vantagem", "comparar"],
+      "resposta": "A TACO não é agência de marketing. Somos consultoria de comunicação corporativa. A diferença: não vendemos cliques ou seguidores. Construímos reputação, autoridade e posicionamento institucional duradouro. Atuação no Brasil e na Europa. Mais de 1000 inserções em mídia espontânea em 2025. Clientes que são referência nos seus segmentos. Quer ver na prática? O diagnóstico é gratuito: https://wa.me/5548988508234"
+    },
+    {
+      "id": "16",
+      "palavras": ["demora", "tempo", "quanto tempo", "prazo", "urgente", "urgência", "urgencia", "rápido", "rapido"],
+      "resposta": "O prazo depende do escopo. Diagnósticos de reputação são entregues em até 24h úteis. Projetos de posicionamento e assessoria de imprensa iniciam em até 5 dias úteis após aprovação. Gestão de crise tem protocolo de resposta imediata. O diagnóstico gratuito já define o cronograma. Agende: https://wa.me/5548988508234"
+    },
+    {
+      "id": "17",
+      "palavras": ["vou pensar", "pensando", "depois", "talvez", "não sei se", "nao sei se", "ainda não", "preciso pensar", "mais tarde"],
+      "resposta": "Sem pressão. Reputação é construção de longo prazo e a decisão precisa ser consciente. O diagnóstico é gratuito e sem compromisso. Na pior das hipóteses, você sai com um mapa claro da sua presença em mídia e dos riscos reputacionais. Quando estiver pronto: https://wa.me/5548988508234"
+    },
+    {
+      "id": "18",
+      "palavras": ["sim", "quero", "bora", "vamos", "pode ser", "fechado", "fechar", "aceito", "manda", "quero sim", "com certeza", "claro"],
+      "resposta": "Perfeito. O próximo passo é agendar o diagnóstico de reputação com a equipe da TACO. Entregamos o PDF executivo em até 24h úteis. Agende aqui: https://wa.me/5548988508234. Ou me passe seu nome e e-mail corporativo que entramos em contato."
+    },
+    {
+      "id": "19",
+      "palavras": ["não", "nao", "não quero", "nao quero", "sem interesse", "não obrigado", "cancelar", "parar"],
+      "resposta": "Sem problema. Respeitamos sua decisão. Se no futuro precisar de suporte em comunicação corporativa, a TACO está à disposição. Digite menu quando quiser retomar. Sucesso com sua marca."
+    },
+    {
+      "id": "20",
+      "palavras": ["obrigado", "obrigada", "valeu", "agradeço", "thanks", "vlw", "falou", "até mais", "tchau", "bye"],
+      "resposta": "Foi um prazer. Se precisar de algo mais, digite menu que retomamos. A TACO Assessoria está aqui para construir a autoridade da sua marca. Até breve."
+    },
+    {
+      "id": "21",
+      "palavras": ["muito bom", "excelente", "incrível", "incrivel", "parabéns", "parabens", "sensacional", "profissional", "adorei", "perfeito"],
+      "resposta": "Obrigado pelo feedback. Excelência em comunicação é o nosso padrão. Se quiser levar esse nível de posicionamento para sua marca, agende o diagnóstico gratuito: https://wa.me/5548988508234"
+    },
+    {
+      "id": "22",
+      "palavras": ["problema", "erro", "não funciona", "nao funciona", "reclamação", "reclamacao"],
+      "resposta": "Sinto por isso. Me conte mais detalhes do que está acontecendo que encaminho diretamente para a equipe. Se preferir resolver mais rápido, fale direto com a TACO: https://wa.me/5548988508234"
+    },
+    {
+      "id": "23",
+      "palavras": ["ajuda", "help", "não sei", "nao sei", "dúvida", "duvida", "como", "qual"],
+      "resposta": "Posso te ajudar com: 1 Nossos serviços (assessoria de imprensa, gestão de crise, posicionamento). 2 Agendar diagnóstico de reputação gratuito. 3 Falar com a equipe. 4 Sobre a TACO. 5 Clientes e resultados. 6 Contato direto. Digite o número ou me conte o que precisa."
+    }
+  ]
+}
